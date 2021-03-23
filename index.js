@@ -779,7 +779,7 @@ _${Ig}_
 ⌦ *${prefix}Blocklist*
 🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋`,
 
-contextinfo:
+contextinfo: {
   mentionedJid: [sender]
 }
   }
