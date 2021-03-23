@@ -23,7 +23,7 @@ const {
 const {color, bgcolor} = require('./lib/color');
 const {bahasa} = require('./src/bahasa');
 const {negara} = require('./src/kodenegara');
-const {wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, información, success, clos } = require('./lib/functions');
+const {wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, Info, success, clos } = require('./lib/functions');
 const {fetchJson} = require('./lib/fetcher');
 const {recognize} = require('./lib/ocr');
 
@@ -248,7 +248,7 @@ async function starts() {
 		console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan the qr code above'))
 	})
 
-	fs.existsSync('./Lexa.json') && Lxa.loadAuthinformación('./Lexa.json')
+	fs.existsSync('./Lexa.json') && Lxa.loadAuthInfo('./Lexa.json')
 	Lxa.on('connecting', () => {
 		start('2', 'Connecting...')
 	})
@@ -256,7 +256,7 @@ async function starts() {
 		success('2', 'Connected')
 	})
 	await Lxa.connect({timeoutMs: 30*1000})
-        fs.writeFileSync('./Lexa.json', JSON.stringify(Lxa.base64EncodedAuthinformación(), null, '\t'))
+        fs.writeFileSync('./Lexa.json', JSON.stringify(Lxa.base64EncodedAuthInfo(), null, '\t'))
 
 
 	Lxa.on('group-participants-update', async (anu) => {
@@ -280,11 +280,11 @@ Bienvenid@ a
 ┗━━━━━━━━━━━━━━━━━━━━
 
 Usa ${prefix}verify para verificarte y poder usar el bot.`
-				Lxa.sendMessage(mdata.id, teks, MessageType.text, { contextinformación: {"mentionedJid": [num]}})
+				Lxa.sendMessage(mdata.id, teks, MessageType.text, { contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
 				teks = `Que bueno que te fuiste @${num.split('@')[0]} no te queriamos 👋`
-				Lxa.sendMessage(mdata.id, teks, MessageType.text, {contextinformación: {"mentionedJid": [num]}})
+				Lxa.sendMessage(mdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [num]}})
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
@@ -368,7 +368,7 @@ Usa ${prefix}verify para verificarte y poder usar el bot.`
 				Lxa.sendMessage(hehe, teks, text)
 			}
 			const mentions = (teks, memberr, id) => {
-				(id == null || id == undefined || id == false) ? Lxa.sendMessage(from, teks.trim(), extendedText, {contextinformación: {"mentionedJid": memberr}}) : Lxa.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextinformación: {"mentionedJid": memberr}})
+				(id == null || id == undefined || id == false) ? Lxa.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : Lxa.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
 			}
 			const costum = (pesan, tipe, target, target2) => {
       Lxa.sendMessage(from, pesan, tipe, {quoted: {key: {fromMe: false, participant: `${target}`, ...(from ? {
@@ -603,7 +603,7 @@ _${Ig}_
 ⌦⌬꧁꯭𝐄𝐑𝐄𝐍-𝐉𝐄𝐀𝐆𝐄𝐑࿈〖𓆐〗࿐᪲🖤⌬
 
 ⌦ *${prefix}Simi (Teks)
-⌦ *${prefix}información*
+⌦ *${prefix}Info*
 ⌦ *${prefix}Dueño*
 ⌦ *${prefix}Donacion*
 ⌦*${prefix}Velosidad*
@@ -757,7 +757,7 @@ _${Ig}_
 *⌬ TIEMPO ⌬
 🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋
 ⌦ *${prefix}Cuaca (Área)*
-⌦ *${prefix}informacióngempa*
+⌦ *${prefix}Infogempa*
 🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋
 *⌬ DESCARGAS ⌬*
 🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋
@@ -779,7 +779,7 @@ _${Ig}_
 ⌦ *${prefix}Blocklist*
 🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋🜋`,
 
-contextinfo: {
+contextInfo: {
   mentionedJid: [sender]
 }
   }
@@ -810,7 +810,7 @@ case 'ceksaldo':
 
 	break
 					case 'slow':
-					low = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación
+					low = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					slo = await Lxa.downloadAndSaveMediaMessage(low)
 					ran = getRandom('.mp3')
 					exec(`ffmpeg -i ${slo} -filter:a "atempo=0.7,asetrate=44100" ${ran}`, (err, stderr, stdout) => {
@@ -822,7 +822,7 @@ case 'ceksaldo':
 					})
 				break
 				case 'tupai':
-					pai = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación
+					pai = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 
 					tup = await Lxa.downloadAndSaveMediaMessage(pai)
 					ran = getRandom('.mp3')
@@ -835,7 +835,7 @@ case 'ceksaldo':
 					})
 				break
 				case 'gemuk':
-					muk = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación
+					muk = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 
 					gem = await Lxa.downloadAndSaveMediaMessage(muk)
 					ran = getRandom('.mp3')
@@ -848,7 +848,7 @@ case 'ceksaldo':
 					})
 				break
 				case 'bass':                 
-					ass = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación
+					ass = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 
 					bas = await Lxa.downloadAndSaveMediaMessage(ass)
 					ran = getRandom('.mp3')
@@ -861,8 +861,9 @@ case 'ceksaldo':
 					})
 					break
 
-//--información bot
-				case 'información':
+//--info bot
+				case 'Info':
+				case 'info':
   me = Lxa.user
   uptime = process.uptime()
   teks = `*‣ Nombre del bot* : ${me.name}
@@ -875,7 +876,7 @@ case 'ceksaldo':
   ‣ *Total de chats* : ${totalchat.length}`
   buffer = await getBuffer(me.imgUrl)
   Lxa.sendMessage(from, buffer, image, {
-caption: teks, contextinformación: {
+caption: teks, contextinfo: {
   mentionedJid: [me.jid]}})
   break
 
@@ -888,7 +889,7 @@ const timestamp = speed();
 const latensi = speed() - timestamp
 Lxa.updatePresence(from, Presence.composing)
 uptime = process.uptime()
-Lxa.sendMessage(from, `*El bot responde en*\n‣ *Speed* : ${latensi.toFixed(4)} _Segundos_\n\n*información bot*\n‣ *Total de chats* : ${totalchat.length}\n‣ *Total de usuarios* : ${_registered.length}\n‣ *Bloqueados* : ${blocked.length}\n‣ *Tiempo activo* : ${kyun(uptime)}`, text, {
+Lxa.sendMessage(from, `*El bot responde en*\n‣ *Speed* : ${latensi.toFixed(4)} _Segundos_\n\n*info bot*\n‣ *Total de chats* : ${totalchat.length}\n‣ *Total de usuarios* : ${_registered.length}\n‣ *Bloqueados* : ${blocked.length}\n‣ *Tiempo activo* : ${kyun(uptime)}`, text, {
   quoted: mek
 })
 break
@@ -1017,7 +1018,7 @@ case 'listonline':
         		let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
 			    let online = [...Object.keys(Lxa.chats.get(ido).presences), Lxa.user.jid]
 			    Lxa.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: mek,
-  			  contextinformación: { mentionedJid: online }
+  			  contextinfo: { mentionedJid: online }
 			    })
 				break
 
@@ -1514,7 +1515,7 @@ case 'kusonime':
   if (args.length < 1) return reply('Escribe el nombre')
   try {
   data = await fetchJson(`https://st4rz.herokuapp.com/api/kuso?q=${teks}`)
-  hasil = `‣ *Nombre* : ${data.title}\n‣ *información* : ${data.información}\n‣ *Sinopsis* : ${data.sinopsis}\n‣ *Link download* :\n${data.link_dl}`
+  hasil = `‣ *Nombre* : ${data.title}\n‣ *info* : ${data.info}\n‣ *Sinopsis* : ${data.sinopsis}\n‣ *Link download* :\n${data.link_dl}`
   buf = await getBuffer(data.thumb)
   Lxa.sendMessage(from, buf, image, {
 quoted: mek, caption: hasil
@@ -1598,7 +1599,7 @@ if (!isGroup) return reply(mess.only.group)
 if (!isRegister) return reply(mess.only.daftarB)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación: mek
+const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinfo: mek
 reply(mess.wait)
 const media = await Lxa.downloadAndSaveMediaMessage(encmedia)
 await Lxa.updateProfilePicture (from, media)
@@ -1610,7 +1611,7 @@ case 'triggered':
  if (!isRegister) return reply(mess.only.userB)
             var imgbb = require('imgbb-uploader')
            if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-           ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+           ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
            reply(mess.wait)
          owgi = await Lxa.downloadAndSaveMediaMessage(ger)
            anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
@@ -1636,7 +1637,7 @@ case 'tourl':
  if (!isRegister) return reply(mess.only.userB)
             var imgbb = require('imgbb-uploader')
            if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-           ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+           ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
            reply(mess.wait)
          owgi = await Lxa.downloadAndSaveMediaMessage(ger)
            anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
@@ -1651,7 +1652,7 @@ case 'wasted':
 if (!isRegister) return reply(mess.only.userB)
 var imgbb = require('imgbb-uploader')
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-  ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación: mek
+  ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
   owgi = await Lxa.downloadAndSaveMediaMessage(ger)
   anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
@@ -1678,7 +1679,7 @@ case 'drawing':
 if (!isRegister) return reply(mess.only.userB)
 var imgbb = require('imgbb-uploader')
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación: mek
+  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
   owgi = await Lxa.downloadAndSaveMediaMessage(ted)
   tels = body.slice(7)
@@ -1695,7 +1696,7 @@ case 'wanted':
 if (!isRegister) return reply(mess.only.userB)
 var imgbb = require('imgbb-uploader')
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación: mek
+  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
   owgi = await Lxa.downloadAndSaveMediaMessage(ted)
   tels = body.slice(7)
@@ -1711,7 +1712,7 @@ case 'gtav':
 if (!isRegister) return reply(mess.only.userB)
 var imgbb = require('imgbb-uploader')
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación: mek
+  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
   owgi = await Lxa.downloadAndSaveMediaMessage(ted)
   tels = body.slice(7)
@@ -1743,7 +1744,7 @@ case 'wame':
   Lxa.updatePresence(from, Presence.composing)
   options = {
 text: `Link WhatsApp: *wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Or ( / )*\n*api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
-contextinformación: {
+contextInfo: {
   mentionedJid: [sender]
 }
   }
@@ -1813,7 +1814,7 @@ break
 case 'fitnah':
 if (args.length < 1) return reply(`Uso :\n${prefix}fitnah [@tag|pesan|balasanbot]]\n\nEx : \n${prefix}fitnah @tagmember|hai|hai juga`)
 var gh = body.slice(7)
-mentioned = mek.message.extendedTextMessage.contextinformación.mentionedJid
+mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 var replace = gh.split("|")[0];
 var target = gh.split("|")[1];
 var bot = gh.split("|")[2];
@@ -1861,7 +1862,7 @@ member.map(async adm => {
 })
 options = {
   text: teks,
-  contextinformación: {
+  contextInfo: {
 mentionedJid: jids
   },
   quoted: mek
@@ -1964,7 +1965,7 @@ for (let i of data.result) {
   teks += `‣ *Titulo* : ${i.title}\n‣ *link* : ${i.link}\n••••••••••••••••••••••\n`
 }
 reply(teks.trim())
-if (data.message) return reply(`La informaciónrmación de  *${teks} no se encontro`)
+if (data.message) return reply(`La Información de  *${teks} no se encontro`)
 
 } catch {
   reply(mess.ferr)
@@ -2019,7 +2020,7 @@ case 'tagme':
 if (!isRegister) return reply(mess.only.daftarB)
 const tagme = {
   text: `@${sender.split("@")[0]} Hola`,
-  contextinformación: {
+  contextInfo: {
 mentionedJid: [sender]
   }
 }
@@ -2243,7 +2244,7 @@ quoted: mek
   }
   break
 
-//--información cuaca
+//--Info cuaca
 case 'cuaca':
   if (!isRegister) return reply(mess.only.daftarB)
   
@@ -2253,7 +2254,7 @@ case 'cuaca':
   anu = await fetchJson(`https://freerestapi.herokuapp.com/api/v1/cuaca?p=${tels}`, {
 method: 'get'
   })
-  hasil = `‣ *El lugar* : ${anu.hasil.Nama}\n‣ *Cuaca* : ${anu.hasil.Cuaca}\n‣ *Viento* : ${anu.hasil.Angin}\n‣ *Suhu* : ${anu.hasil.Suhu}\n‣ *Humedad* : ${anu.hasil.Kelembaban}\n‣ *informaciónrmación* : ${anu.hasil.Keterangan}`
+  hasil = `‣ *El lugar* : ${anu.hasil.Nama}\n‣ *Cuaca* : ${anu.hasil.Cuaca}\n‣ *Viento* : ${anu.hasil.Angin}\n‣ *Suhu* : ${anu.hasil.Suhu}\n‣ *Humedad* : ${anu.hasil.Kelembaban}\n‣ *Información* : ${anu.hasil.Keterangan}`
   Lxa.sendMessage(from, hasil, text, {
 quoted: mek
   })
@@ -2263,14 +2264,14 @@ quoted: mek
   }
   break
 
-//--información gempa
-//informaciónrmasi gempa terkini
-case 'informacióngempa':
+//--Info gempa
+//Informasi gempa terkini
+case 'Infogempa':
   if (!isRegister) return reply(mess.only.daftarB)
   
   Lxa.updatePresence(from, Presence.composing)
   try {
-  anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/informacióngempa`, {
+  anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/Infogempa`, {
 method: 'get'
   })
   hasil = `‣ *Profundidad* : ${anu.kedalaman}\n‣ *Coordinar* : ${anu.koordinat}\n‣ *Ubicación* : ${anu.lokasi}\n‣ *Magnitude* : ${anu.magnitude}\n‣ *Potensia* : ${anu.potensi}\n‣ *Hora* : ${anu.waktu}`
@@ -2355,12 +2356,12 @@ case 'play':
   try {
   anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
   if (anu.error) return reply(anu.error)
-  informaciónmp3 = `*Audio*\n‣ *Nombre* : ${anu.result.title}\n‣ *Fuente* : ${anu.result.source}\n‣ *Tamaño* : ${anu.result.size}\n\n_El audio se esta mandando, si no llega descargue por el link_\n‣ *Link* : ${anu.result.url_audio}
+  Infomp3 = `*Audio*\n‣ *Nombre* : ${anu.result.title}\n‣ *Fuente* : ${anu.result.source}\n‣ *Tamaño* : ${anu.result.size}\n\n_El audio se esta mandando, si no llega descargue por el link_\n‣ *Link* : ${anu.result.url_audio}
   `
   buffer = await getBuffer(anu.result.thumbnail)
   lagu = await getBuffer(anu.result.url_audio)
   Lxa.sendMessage(from, buffer, image, {
-quoted: mek, caption: informaciónmp3
+quoted: mek, caption: Infomp3
   })
   Lxa.sendMessage(from, lagu, audio, {
 mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: mek
@@ -2380,11 +2381,11 @@ case 'ytmp3':
   if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Formato de link incorrecto')
   try {
   anu = await fetchJson(`https://api.zeks.xyz/api/ytmp3/2?url=${play}&apikey=${viKey}`)
-  informaciónmp3 = `*Audio!!!*\n‣ Nombre : ${anu.result.title}\n‣ Fuente: ${anu.result.source}\n‣ Tamaño: ${anu.result.size}\n\n_El audio se esta mandando espere, si no llega descargue por el link_\n‣ *link* : ${anu.result.link}`
+  Infomp3 = `*Audio!!!*\n‣ Nombre : ${anu.result.title}\n‣ Fuente: ${anu.result.source}\n‣ Tamaño: ${anu.result.size}\n\n_El audio se esta mandando espere, si no llega descargue por el link_\n‣ *link* : ${anu.result.link}`
   buffer = await getBuffer(anu.result.thumb)
   lagu = await getBuffer(anu.result.link)
   Lxa.sendMessage(from, buffer, image, {
-quoted: mek, caption: informaciónmp3
+quoted: mek, caption: Infomp3
   })
   Lxa.sendMessage(from, lagu, audio, {
 mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: mek
@@ -2404,11 +2405,11 @@ case 'ytmp4':
   anu = await fetchJson(`https://api.zeks.xyz/api/ytmp4?url=${play}&apikey=${viKey}`)
   if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Format link salah, gunakan link youtube')
   if (anu.error) return reply(anu.error)
-  informaciónmp3 = `*Video*\n‣ *Nombre* : ${anu.result.title}\n‣ *Fuente* : ${anu.result.source}\n‣ *Tamaño* : ${anu.result.size}\n\n_Se esta mandando el video, si no llega descargue por el link_\n‣ *link* : ${anu.result.url_video}`
+  Infomp3 = `*Video*\n‣ *Nombre* : ${anu.result.title}\n‣ *Fuente* : ${anu.result.source}\n‣ *Tamaño* : ${anu.result.size}\n\n_Se esta mandando el video, si no llega descargue por el link_\n‣ *link* : ${anu.result.url_video}`
   buffer = await getBuffer(anu.result.thumbnail)
   lagu = await getBuffer(anu.result.url_video)
   Lxa.sendMessage(from, buffer, image, {
-quoted: mek, caption: informaciónmp3
+quoted: mek, caption: Infomp3
   })
   Lxa.sendMessage(from, lagu, video, {
 mimetype: 'video/mp4', filename: `${anu.result.title}.mp4`, quoted: mek
@@ -2467,7 +2468,7 @@ case 'fb':
   try {
   anu = await fetchJson(`https://mhankbarbar.tech/api/epbe?url=${play}&apiKey=${BarbarKey}`)
   if (anu.error) return reply(anu.error)
-  informaciónmp3 = `*Video*\n‣ *Nombre* : ${anu.title}\n‣ *Publicación* : ${anu.published}\n‣ *Tamaño* : ${anu.filesize}\n\n_El video se esta enviando, si no llega descargue por el link_\n‣ *link* : ${anu.result}`
+  Infomp3 = `*Video*\n‣ *Nombre* : ${anu.title}\n‣ *Publicación* : ${anu.published}\n‣ *Tamaño* : ${anu.filesize}\n\n_El video se esta enviando, si no llega descargue por el link_\n‣ *link* : ${anu.result}`
   lagu = await getBuffer(anu.result)
   Lxa.sendMessage(from, lagu, video, {
 mimetype: 'video/mp4', filename: `${anu.result.title}.mp4`, quoted: mek
@@ -2508,11 +2509,11 @@ case 'decargar':
   data = await fetchJson(`https://tobz-api.herokuapp.com/api/descargar?q=${tels}&apikey=BotWeA`, {
 method: 'get'
   })
-  informaciónmp3 = `*Encontrado!!*\nNombre : ${data.result.judul}\nAlbúm : ${data.result.album}\nPublicado: ${data.result.dipublikasi}`
+  Infomp3 = `*Encontrado!!*\nNombre : ${data.result.judul}\nAlbúm : ${data.result.album}\nPublicado: ${data.result.dipublikasi}`
   buffer = await getBuffer(data.result.thumb)
   lagu = await getBuffer(data.result.mp3)
   Lxa.sendMessage(from, buffer, image, {
-quoted: mek, caption: informaciónmp3
+quoted: mek, caption: Infomp3
   })
   Lxa.sendMessage(from, lagu, audio, {
 mimetype: 'audio/mp4', filename: `${data.result.title}.mp3`, quoted: mek
@@ -2552,14 +2553,14 @@ case 'tik':
 method: 'get'
   })
   if (anu.error) return reply(anu.error)
-  teks = `*Nombre* : ${anu.result.nameinformación}\n*Caption* : ${anu.result.textinformación}\n\n_Enviando archivos, espere_`
+  teks = `*Nombre* : ${anu.result.nameInfo}\n*Caption* : ${anu.result.textInfo}\n\n_Enviando archivos, espere_`
   thumb = await getBuffer(anu.result.image)
   Lxa.sendMessage(from, thumb, image, {
 quoted: mek, caption: teks
   })
   buffer = await getBuffer(anu.result.mp4direct)
   Lxa.sendMessage(from, buffer, video, {
-mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
+mimetype: 'video/mp4', filename: `${anu.nameInfo}.mp4`, quoted: mek
   })
   
   } catch {
@@ -2588,13 +2589,13 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 						teks += `~> @${block.split('@')[0]}\n`
 					}
 					teks += `Total : ${blocked.length}`
-					Lxa.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextinformación: {"mentionedJid": blocked}})
+					Lxa.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": blocked}})
 					break
 
 //--read text on image
 				case 'ocr':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await Lxa.downloadAndSaveMediaMessage(encmedia)
 						reply(mess.wait)
 						await recognize(media, {lang: 'eng+ind', oem: 1, psm: 3})
@@ -2678,7 +2679,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				case 'sticker':
 				  case 's':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await Lxa.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						await ffmpeg(`./${media}`)
@@ -2706,8 +2707,8 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 							.save(ran)
-					} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextinformación.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
-						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+					} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
+						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await Lxa.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						reply(mess.wait)
@@ -2738,7 +2739,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 							.toFormat('webp')
 							.save(ran)
 					} else if ((isMedia || isQuotedImage) && args[0] == 'nobg') {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await Lxa.downloadAndSaveMediaMessage(encmedia)
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
@@ -2762,7 +2763,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 							})
 						})
 					/*} else if ((isMedia || isQuotedImage) && colors.includes(args[0])) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await Lxa.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						await ffmpeg(`./${media}`)
@@ -2793,7 +2794,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				var itsme = `0@s.whatsapp.net`
 				var split = `${cr}`
 				var selepbot = {
-					contextinformación: {
+					contextInfo: {
 						participant: itsme,
 						quotedMessage: {
 							extendedTextMessage: {
@@ -2816,7 +2817,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				var itsme = `0@s.whatsapp.net`
 				var split = `${cr}`
 				var selepbot = {
-					contextinformación: {
+					contextInfo: {
 						participant: itsme,
 						quotedMessage: {
 							extendedTextMessage: {
@@ -2842,7 +2843,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 					teks += `- ${awokwkwk}\n`
 				}
 				teks += `\n*Total : ${setiker.length}*\nUsa el comando\n*${prefix}getstik (nombre del pack)*\npara seleccionar sticker`
-				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextinformación: { "mentionedJid": setiker } })
+				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": setiker } })
 				break
 			
 			case 'totaluser':
@@ -2851,7 +2852,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 					teks += `[${id.toString()}]\`\`\` @${i.split('@')[0]}`
 				}
 				teks += `\n*Total : ${_registered.length}`
-				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextinformación: { "mentionedJid": _registered} })
+				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": _registered} })
 				break
 
 			case 'addstik':
@@ -2859,7 +2860,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				if (!isOwner) return reply(mess.only.ownerB)
 				svst = body.slice(9)
 				if (!svst) return reply('Nombre del sticker?')
-				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación
+				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 				delb = await Lxa.downloadMediaMessage(boij)
 				setiker.push(`${svst}`)
 				fs.writeFileSync(`./temp/stick/${svst}.webp`, delb)
@@ -2872,7 +2873,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				if (!isOwner) return reply(mess.only.ownerB)
 				svst = body.slice(7)
 				if (!svst) return reply('Nombre del audio?')
-				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación
+				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 				delb = await Lxa.downloadMediaMessage(boij)
 				audionye.push(`${svst}`)
 				fs.writeFileSync(`./temp/audio/${svst}.mp3`, delb)
@@ -2897,7 +2898,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 					teks += `- ${awokwkwk}\n`
 				}
 				teks += `\n*Total : ${audionye.length}*\nUsa el comando\n*${prefix}getvn (nombre del pack)*\n`
-				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextinformación: { "mentionedJid": audionye } })
+				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": audionye } })
 				break
 
 			case 'addimg':
@@ -2905,7 +2906,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				if (!isOwner) return reply(mess.only.ownerB)
 				svst = body.slice(8)
 				if (!svst) return reply('Nombre de la imagen')
-				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación
+				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 				delb = await Lxa.downloadMediaMessage(boij)
 				imagenye.push(`${svst}`)
 				fs.writeFileSync(`./temp/foto/${svst}.jpeg`, delb)
@@ -2929,7 +2930,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 					teks += `- ${awokwkwk}\n`
 				}
 				teks += `\n*Total : ${imagenye.length}*\nUsa el comando\n*${prefix}getimg (nombre del pack)*\n`
-				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextinformación: { "mentionedJid": imagenye } })
+				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": imagenye } })
 				break
 
 			case 'addvid':
@@ -2937,7 +2938,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 				if (!isQuotedVideo) return reply('Responde un video')
 				svst = body.slice(8)
 				if (!svst) return reply('Nombre del video')
-				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación
+				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 				delb = await Lxa.downloadMediaMessage(boij)
 				videonye.push(`${svst}`)
 				fs.writeFileSync(`./temp/video/${svst}.mp4`, delb)
@@ -2961,7 +2962,7 @@ mimetype: 'video/mp4', filename: `${anu.nameinformación}.mp4`, quoted: mek
 					teks += `- ${awokwkwk}\n`
 				}
 				teks += `\n*Total : ${videonye.length}*\nUsa el comando\n*${prefix}getvid (nombre del pack)*\n`
-				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextinformación: { "mentionedJid": videonye } })
+				Lxa.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": videonye } })
 				break
 
 
@@ -3005,7 +3006,7 @@ Lxa.updatePresence(from,
 if (!isRegister) return reply(mess.only.daftarB)
 if (!isQuotedSticker) return reply('Responde un sticker')
 reply(mess.wait)
-anumedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación
+anumedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 anum = await Lxa.downloadAndSaveMediaMessage(anumedia)
 ran = getRandom('.webp')
 exec(`ffmpeg -i ${anum} ${ran}`, (err) => {
@@ -3026,7 +3027,7 @@ Lxa.updatePresence(from,
 if (!isRegister) return reply(mess.only.daftarB)
 if (!isQuotedVideo) return reply('Responde a un video')
 reply(mess.wait)
-mitri = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextinformación
+mitri = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 duh = await Lxa.downloadAndSaveMediaMessage(mitri)
 ran = getRandom('.mp4')
 exec(`ffmpeg -i ${duh} ${ran}`, (err) => {
@@ -3143,7 +3144,7 @@ case 'unblock':
 				case 'tiktokstalk':
 					try {
 						if (args.length < 1) return Lxa.sendMessage(from, 'Escribe el nombre de usuario', text, {quoted: mek})
-						let { user, stats } = await tiktod.getUserProfileinformación(args[0])
+						let { user, stats } = await tiktod.getUserProfileInfo(args[0])
 						reply(mess.wait)
 						teks = `*ID* : ${user.id}\n*Username* : ${user.uniqueId}\n*Nickname* : ${user.nickname}\n*Followers* : ${stats.followerCount}\n*Followings* : ${stats.followingCount}\n*Posts* : ${stats.videoCount}\n*Luv* : ${stats.heart}\n`
 						buffer = await getBuffer(user.avatarLarger)
@@ -3230,7 +3231,7 @@ break
 					if (args.length < 1) return reply('.......')
 					anu = await Lxa.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						buff = await Lxa.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
 							Lxa.sendMessage(_.jid, buff, image, {caption: `*${body.slice(4)}*`})
@@ -3251,7 +3252,7 @@ break
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
-					mentioned = mek.message.extendedTextMessage.contextinformación.mentionedJid
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = 'Con exito \n'
 						for (let _ of mentioned) {
@@ -3294,7 +3295,7 @@ break
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
-					mentioned = mek.message.extendedTextMessage.contextinformación.mentionedJid
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = 'Un admin menos por mal parido'
 						for (let _ of mentioned) {
@@ -3330,7 +3331,7 @@ break
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target')
-					mentioned = mek.message.extendedTextMessage.contextinformación.mentionedJid
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = 'Orden recibida :\n'
 						for (let _ of mentioned) {
@@ -3362,7 +3363,7 @@ break
 case 'setppbot':
   Lxa.updatePresence(from, Presence.composing)
   if (!isOwner) return reply(mess.only.ownerB)
-  const botpp = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contxtinformación: mek
+  const botpp = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contxtInfo: mek
   const cuk = await Lxa.downloadAndSaveMediaMessage(botpp)
   await Lxa.updateProfilePicture(botNumber, cuk)
   reply('Gracias por el nuevo perfil')
@@ -3412,7 +3413,7 @@ reply(ind.satukos())
 					if (!isQuotedSticker) return reply('Responde sticker')
 					if (!isRegister) return reply(mess.only.daftarB)
 					reply(mess.wait)
-					imgmed = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación
+					imgmed = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					medimg = await Lxa.downloadAndSaveMediaMessage(imgmed)
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${medimg} ${ran}`, (err) => {
@@ -3512,7 +3513,7 @@ case 'cerrar':
   var nomor = mek.participant
   const close = {
 text: `Grupo cerrado por @${nomor.split("@s.whatsapp.net")[0]}\n ahora solo los admins facheros pueden escribir`,
-contextinformación: {
+contextInfo: {
   mentionedJid: [nomor]
 }
   }
@@ -3530,7 +3531,7 @@ if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 open = {
   text: `Grupo abierto por @${sender.split("@")[0]}\n ahora todos pueden usar el bot`,
-  contextinformación: {
+  contextInfo: {
 mentionedJid: [sender]
   }
 }
@@ -3549,7 +3550,7 @@ if (!isRegister) return reply(mess.only.daftarB)
 if (!isGroupAdmins)return reply(mess.only.admin)
 try {
 Lxa.deleteMessage(from, {
-  id: mek.message.extendedTextMessage.contextinformación.stanzaId, remoteJid: from, fromMe: true
+  id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true
 })
 } catch {
   reply('Mmg tu eres un bot?')
@@ -3636,7 +3637,7 @@ break
 					if (!isOwner) return reply(mess.only.ownerB)
 					if (args.length < 1) return reply('Tag target')
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag cvk')
-					mentioned = mek.message.extendedTextMessage.contextinformación.mentionedJid[0]
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 					let { jid, id, notify } = groupMembers.find(x => x.jid === mentioned)
 					try {
 						pp = await Lxa.getProfilePicture(id)
@@ -3650,7 +3651,7 @@ break
 				case 'wait':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						reply(mess.wait)
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextinformación : mek
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						media = await Lxa.downloadMediaMessage(encmedia)
 						await wait(media).then(res => {
 							Lxa.sendMessage(from, res.video, video, {quoted: mek, caption: res.teks.trim()})
