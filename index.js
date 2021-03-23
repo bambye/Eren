@@ -580,7 +580,7 @@ case 'help':
 case '?':
   if (!isRegister) return reply(mess.only.daftarB)
   uptime = process.uptime()
-  const Menu = {
+  const Menu = 
 text: ──꧁꯭𝐄𝐑𝐄𝐍-𝐉𝐄𝐀𝐆𝐄𝐑࿈〖𓆐〗࿐᪲🖤──
 ────────────────
 Qlq tu singas? *${pushname}* 
