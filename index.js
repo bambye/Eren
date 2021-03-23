@@ -574,7 +574,7 @@ reply(hasil)
         break
 }
 
-			switch(command) {
+			switch(command) 
 case 'help':
   case 'menu':
 case '?':
